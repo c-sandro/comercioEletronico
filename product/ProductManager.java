@@ -25,6 +25,38 @@ public class ProductManager{
 
     }
 
+    public String editProduct(int inputId, String option, String newVar){
+
+        Product tempProduct = scanList(inputId);
+
+        switch(option){
+
+            case "NAME":
+
+                tempProduct.setName(newVar);
+                temp.add(tempProduct);
+                return "Nome alterado";
+
+            case "PRICE":
+            
+                tempProduct.setPrice(Float.parseFloat(newVar));
+                temp.add(tempProduct);
+                return "Preço alterado";
+
+            case "QUANTITY":
+
+                tempProduct.setQuantity(Integer.parseInt(newVar));
+                temp.add(tempProduct);
+                return "Preço alterado";
+            
+            default:
+
+                return null;
+        }
+
+
+    }
+
     public String removeProduct(int inputId){
 
         for(Product productCheck : temp){
@@ -39,6 +71,23 @@ public class ProductManager{
         }
 
         return "Produto com este id não encontrado";
+
+    }
+
+    private Product scanList(int id){
+
+        for(Product productCheck : temp){
+
+            if(productCheck.getId() == id){
+
+                temp.remove(productCheck);
+                return productCheck;
+
+            }
+
+        }
+
+        return null;
 
     }
     
