@@ -1,3 +1,5 @@
+
+
 public class Product{
     
     private String name;
@@ -13,31 +15,31 @@ public class Product{
         this.id = id;
     }
 
-    public String getName() {
+    public String getName(){
         return name;
     }
-    public void setName(String name) {
+    public void setName(String name){
         this.name = name;
     }
 
-    public float getPrice() {
+    public float getPrice(){
         return price;
     }
-    public void setPrice(float price) {
+    public void setPrice(float price){
         this.price = price;
     }
 
-    public int getQuantity() {
+    public int getQuantity(){
         return quantity;
     }
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity){
         this.quantity = quantity;
     }
 
-    public int getId() {
+    public int getId(){
         return id;
     }
-    public void setId(int id) {
+    public void setId(int id){
         this.id = id;
     }
 
