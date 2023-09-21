@@ -4,6 +4,8 @@ public class Product{
     private float price;
     private int quantity, id;
 
+    //id é pra ser único, cada produto tem um diferente
+
     public Product(String name, float price, int quantity, int id) {
         this.name = name;
         this.price = price;
