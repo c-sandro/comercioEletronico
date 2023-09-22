@@ -25,26 +25,27 @@ public class ClientManager{
 
     public String editClient(int inputCpf, String option, String newVar){
 
-        Client tempProduct = scanList(inputCpf);
+        if(scanList(inputCpf) == -1){
+            return "CPF não existe";
+        }
+
+        int clientId = scanList(inputCpf);
 
         switch(option){
 
             case "NAME":
 
-                tempProduct.setName(newVar);
-                temp.add(tempProduct);
+                temp.get(clientId).setName(newVar);
                 return "Nome alterado";
 
             case "ADRESS":
             
-                tempProduct.setAdress(newVar);
-                temp.add(tempProduct);
+                temp.get(clientId).setAdress(newVar);
                 return "Endereço alterado";
 
             case "BALANCE":
 
-                tempProduct.setBalance(Integer.parseInt(newVar));
-                temp.add(tempProduct);
+                temp.get(clientId).setBalance(Integer.parseInt(newVar));
                 return "Saldo alterado";
             
             default:
@@ -71,20 +72,19 @@ public class ClientManager{
 
     }
 
-    private Client scanList(int cpf){
+    private int scanList(int cpf){
 
         for(Client productCheck : temp){
 
             if(productCheck.getCpf() == cpf){
 
-                temp.remove(productCheck);
-                return productCheck;
+                return temp.indexOf(productCheck);
 
             }
 
         }
 
-        return null;
+        return -1;
 
     }
     

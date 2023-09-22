@@ -1,10 +1,15 @@
 package client;
 
+import order.*;
+import java.util.ArrayList;
+
 public class Client{
 
     private String name, adress;
     private int cpf;
     private float balance;
+    //guarda as ordens do cliente
+    private ArrayList<Order> clientOrders; 
 
     public Client(String name, String adress, int cpf, float balance){
 
@@ -12,7 +17,8 @@ public class Client{
         this.adress = adress;
         this.cpf = cpf;
         this.balance = balance;
-        
+        this.clientOrders = new ArrayList<>();
+
     }
 
     public String getName(){
@@ -43,4 +49,12 @@ public class Client{
         this.balance = balance;
     }
 
+    public ArrayList<Order> getClientOrders(){
+        return clientOrders;
+    }
+    public void addClientOrder(Order newOrder){
+
+        this.clientOrders.add(newOrder);
+
+    }
 }

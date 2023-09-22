@@ -7,12 +7,14 @@ public class Order{
 
     private Client client;
     private Product product;
+    //id unico que nem os produtos
     //tempo de entrega em dias
-    private int id, shipping;
+    private int quantity, id, shipping;
     
-    public Order(Client client, Product product, int id, int shipping) {
+    public Order(Client client, Product product, int quantity, int id, int shipping) {
         this.client = client;
         this.product = product;
+        this.quantity = quantity;
         this.id = id;
         this.shipping = shipping;
     }
@@ -29,6 +31,13 @@ public class Order{
     }
     public void setProduct(Product product){
         this.product = product;
+    }
+    
+    public int getQuantity(){
+        return quantity;
+    }
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
     }
 
     public int getId(){

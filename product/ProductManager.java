@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 public class ProductManager{
 
-    //aqui a gente coloca as funções que mexe com o produto
-    //tipo adicionar produto, remover etc
-
     //array temporario ate a gente decidir como guardar os dado
     ArrayList<Product> temp = new ArrayList<>();
 
@@ -29,26 +26,27 @@ public class ProductManager{
 
     public String editProduct(int inputId, String option, String newVar){
 
-        Product tempProduct = scanList(inputId);
+        if(scanList(inputId) == -1){
+            return "Produto com ID não encontrado";
+        }
+
+        int productId = scanList(inputId);
 
         switch(option){
 
             case "NAME":
 
-                tempProduct.setName(newVar);
-                temp.add(tempProduct);
+                temp.get(productId).setName(newVar);
                 return "Nome alterado";
 
             case "PRICE":
             
-                tempProduct.setPrice(Float.parseFloat(newVar));
-                temp.add(tempProduct);
+                temp.get(productId).setPrice(Float.parseFloat(newVar));
                 return "Preço alterado";
 
             case "QUANTITY":
 
-                tempProduct.setQuantity(Integer.parseInt(newVar));
-                temp.add(tempProduct);
+                temp.get(productId).setQuantity(Integer.parseInt(newVar));
                 return "Preço alterado";
             
             default:
@@ -72,24 +70,23 @@ public class ProductManager{
 
         }
 
-        return "Produto com este id não encontrado";
+        return "Produto com ID não encontrado";
 
     }
 
-    private Product scanList(int id){
+    private int scanList(int id){
 
         for(Product productCheck : temp){
 
             if(productCheck.getId() == id){
 
-                temp.remove(productCheck);
-                return productCheck;
+                return temp.indexOf(productCheck);
 
             }
 
         }
 
-        return null;
+        return -1;
 
     }
     
