@@ -24,7 +24,6 @@ public class Window extends JFrame{
                 null, 
                 options, 
                 0);
-            JOptionPane.showInputDialog(null, "nome");
                 
                 if(userOption == 0){
                     ProductFrame.productFrame();
