@@ -32,36 +32,53 @@ public class App implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource()==windowManager.addProductButton){
+        if(e.getSource() == ProductFrame.getAddButton()){
 
             String[] productParams = windowManager.createProduct();
-            Product newProduct = new Product(productParams[0], Float.parseFloat(productParams[0]), Integer.parseInt(productParams[0]), Integer.parseInt(productParams[0]));
+            Product newProduct = new Product(productParams[0], 
+                            Float.parseFloat(productParams[1]), 
+                            Integer.parseInt(productParams[2]), 
+                            Integer.parseInt(productParams[3]));
 
-            productManager.addProduct(newProduct);
+            JOptionPane.showMessageDialog(windowManager, productManager.addProduct(newProduct));
 
             System.out.println(newProduct.getName() + "\n" + newProduct.getPrice() + "\n" + newProduct.getQuantity() + "\n" + newProduct.getId());
 
+        }else if(e.getSource() == ProductFrame.getEditButton()){
 
-        }else if(e.getSource()==windowManager.editProductButton){
-            JOptionPane.showMessageDialog(windowManager, "teste editar produto");
-        }else if(e.getSource()==windowManager.deleteProductButton){
-            JOptionPane.showMessageDialog(windowManager, "teste deletar produto");
-        }else if(e.getSource()==windowManager.backButton){
+            String[] newParams = windowManager.editProduct();
+            JOptionPane.showMessageDialog(windowManager, 
+            productManager.editProduct(Integer.parseInt(newParams[0]), 
+                                                        newParams[1], 
+                                                        newParams[2]));
+
+        }else if(e.getSource() == ProductFrame.getDeleteButton()){
+
+            int productId = windowManager.deleteProduct();
+
+            if(productId != -1){
+                JOptionPane.showMessageDialog(windowManager, productManager.removeProduct(productId));
+            }
+
+        }else if(e.getSource() == ProductFrame.getBackButton()){
             
-        }else if(e.getSource()==windowManager.addClientButton){
+            windowManager.getProductFrame().dispose();
+            new Window(this);
+
+        }/*else if(e.getSource() == windowManager.addClientButton){
             JOptionPane.showMessageDialog(windowManager, "teste adicionar cliente");
-        }else if(e.getSource()==windowManager.editClientButton){
+        }else if(e.getSource() == windowManager.editClientButton){
             JOptionPane.showMessageDialog(windowManager, "teste editar cliente");
-        }else if(e.getSource()==windowManager.deleteClientButton){
+        }else if(e.getSource() == windowManager.deleteClientButton){
             JOptionPane.showMessageDialog(windowManager, "teste deletar cliente");
-        }else if(e.getSource()==windowManager.addOrderButton){
+        }else if(e.getSource() == windowManager.addOrderButton){
             JOptionPane.showMessageDialog(windowManager, "teste adicionar pedido");
-        }else if(e.getSource()==windowManager.editOrderButton){
+        }else if(e.getSource() == windowManager.editOrderButton){
             JOptionPane.showMessageDialog(windowManager, "teste editar pedido");
             
-        }else if(e.getSource()==windowManager.deleteOrderButton){
+        }else if(e.getSource() == windowManager.deleteOrderButton){
             JOptionPane.showMessageDialog(windowManager, "teste deletar pedido");
-        }
+        }*/
     }
 
 }

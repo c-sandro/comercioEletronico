@@ -1,14 +1,17 @@
 package com.examp.item;
 
+import com.examp.client.*;
+
 public class Product{
     
     private String name;
     private float price;
     private int quantity, id;
+    private Client seller;
 
     //id é pra ser único, cada produto tem um diferente
 
-    public Product(String name, float price, int quantity, int id) {
+    public Product(String name, float price, int quantity, int id){
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -41,6 +44,13 @@ public class Product{
     }
     public void setId(int id){
         this.id = id;
+    }
+
+    public Client getSeller() {
+        return seller;
+    }
+    public void setSeller(Client seller) {
+        this.seller = seller;
     }
 
 }

@@ -1,34 +1,26 @@
 package com.examp.window;
 
 import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import com.examp.App;
-
-public class ProductFrame{
+public class ProductFrame extends JFrame{
     
-    private static JFrame frame;
-    private static JTable productTable;
-    private static DefaultTableModel tableModel;
+    private JTable productTable;
+    private DefaultTableModel tableModel;
 
-    public JButton addButton = new JButton("Adicionar Produto");
-    public JButton editButton = new JButton("Editar Produto");
-    public JButton deleteButton = new JButton("Excluir Produto");
-    JButton backButton = new JButton("Voltar Ao Menu Principal");
+    private static JButton addButton = new JButton("Adicionar Produto");
+    private static JButton editButton = new JButton("Editar Produto");
+    private static JButton deleteButton = new JButton("Excluir Produto");
+    private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
-    public ProductFrame(App app){ 
-        frame = new JFrame("Gerenciamento de Produtos");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public ProductFrame(){ 
+        this.setTitle("Gerenciamento de Produtos");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        frame.getContentPane().add(mainPanel);
-        frame.setLocation(480, 170);
+        this.getContentPane().add(mainPanel);
+        this.setLocation(480, 170);
 
     //###TABELA###
         tableModel = new DefaultTableModel();
@@ -37,6 +29,7 @@ public class ProductFrame{
         tableModel.addColumn("Preço");
         tableModel.addColumn("Quantidade");
         tableModel.addColumn("ID");
+        tableModel.addColumn("Vendedor");
         JScrollPane scrollPane = new JScrollPane(productTable);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
@@ -49,8 +42,27 @@ public class ProductFrame{
         buttonPanel.add(deleteButton);
         buttonPanel.add(backButton);
 
-        frame.pack();
-        frame.setVisible(true);
+        this.pack();
+        this.setVisible(true);
+    }
+
+    public JTable getProductTable(){
+        return productTable;
+    }
+    public DefaultTableModel getTableModel(){
+        return tableModel;
+    }
+    public static JButton getAddButton(){
+        return addButton;
+    }
+    public static JButton getEditButton(){
+        return editButton;
+    }
+    public static JButton getDeleteButton(){
+        return deleteButton;
+    }
+    public static JButton getBackButton(){
+        return backButton;
     }
 
 }

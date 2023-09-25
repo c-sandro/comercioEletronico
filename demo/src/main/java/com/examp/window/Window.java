@@ -1,189 +1,75 @@
 package com.examp.window;
 
-import java.awt.*;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import com.examp.App;
 
 public class Window extends JFrame{
 
-    private static JFrame frame = new JFrame("Gerenciamento de Produtos");
-    private static JTable table;
-    private static DefaultTableModel tableModel;
-    
-    public JButton addProductButton = new JButton("Adicionar Produto");
-    public JButton editProductButton = new JButton("Editar Produto");
-    public JButton deleteProductButton = new JButton("Excluir Produto");
-    public JButton backButton = new JButton("Voltar Ao Menu Principal");
-    public JButton addClientButton = new JButton("Adicionar Cliente");
-    public JButton editClientButton = new JButton("Editar Cliente");
-    public JButton deleteClientButton = new JButton("Excluir Cliente");
-    public JButton addOrderButton = new JButton("Adicionar Pedido");
-    public JButton editOrderButton = new JButton("Editar Pedido");
-    public JButton deleteOrderButton = new JButton("Excluir Pedido");
+    private JFrame frame;
+    private ClientFrame clientFrame;
+    private ProductFrame productFrame;
+    private OrderFrame orderFrame;
 
     int userOption = 0;
 
     App app;
 
     public Window(App app){
-        String[] options = new String[]{
-            "produto",
-            "cliente",
-            "pedidos",
-            "sair"
-        };
+        String[] options = {"Cliente", "Produto", "Pedidos", "Sair"};
 
         this.app = app;
 
-        while(userOption != 3){
-            userOption = JOptionPane.showOptionDialog(
-                null, 
-                "O que você desejar acessar?", 
-                "Gerenciamento de E-commerce", 
-                JOptionPane.DEFAULT_OPTION, 
-                JOptionPane.QUESTION_MESSAGE, 
-                null, 
-                options, 
-                0);
-                
-            if(userOption == 0){
-                ProductFrame();
-                break;
-            } 
-            else if(userOption == 1){
-                ClientFrame();
-                break;
-            } 
-            else if(userOption == 2){
-                OrderFrame();
-                break;
-            } 
-            else{
-                JOptionPane.showMessageDialog(null, "Programa Encerrado");
-            }
+        userOption = JOptionPane.showOptionDialog(
+            this, 
+            "O que você desejar acessar?", 
+            "Gerenciamento de E-commerce", 
+            JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.QUESTION_MESSAGE, 
+            null, 
+            options, 
+            0);
+            
+        if(userOption == 0){
+            clientFrame = new ClientFrame();
+
+            ClientFrame.getAddButton().addActionListener(this.app);
+            ClientFrame.getEditButton().addActionListener(this.app);
+            ClientFrame.getDeleteButton().addActionListener(this.app);
+            ClientFrame.getBackButton().addActionListener(this.app);
+            
+        }else if(userOption == 1){
+            productFrame = new ProductFrame();
+
+            ProductFrame.getAddButton().addActionListener(this.app);
+            ProductFrame.getEditButton().addActionListener(this.app);
+            ProductFrame.getDeleteButton().addActionListener(this.app);
+            ProductFrame.getBackButton().addActionListener(this.app);
+
+        }else if(userOption == 2){
+            orderFrame = new OrderFrame();
+
+            OrderFrame.getAddButton().addActionListener(this.app);
+            OrderFrame.getEditButton().addActionListener(this.app);
+            OrderFrame.getDeleteButton().addActionListener(this.app);
+            OrderFrame.getBackButton().addActionListener(this.app);
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Programa Encerrado");
         }
-    }
-
-
-    public JFrame ProductFrame(){
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel mainPanel = new JPanel(new BorderLayout());
-
-        frame.getContentPane().add(mainPanel);
-        frame.setLocation(480, 170);
-
-    //###TABELA###
-        tableModel = new DefaultTableModel();
-        table = new JTable(tableModel);
-        tableModel.addColumn("Nome");
-        tableModel.addColumn("Preço");
-        tableModel.addColumn("Quantidade");
-        tableModel.addColumn("ID");
-        JScrollPane scrollPane = new JScrollPane(table);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-
-    //###BOTÕES###
-        JPanel buttonPanel = new JPanel();
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        addProductButton.setBackground(Color.lightGray);
-        editProductButton.setBackground(Color.lightGray);
-        deleteProductButton.setBackground(Color.lightGray);
-        backButton.setBackground(Color.lightGray);
-        buttonPanel.setBackground(Color.gray);
-
-        buttonPanel.add(addProductButton);
-        buttonPanel.add(editProductButton);
-        buttonPanel.add(deleteProductButton);
-        buttonPanel.add(backButton);
-
-        addProductButton.addActionListener(app);
-        editProductButton.addActionListener(app);
-        deleteProductButton.addActionListener(app);
-        backButton.addActionListener(app);
-
-        frame.pack();
-        frame.setVisible(true);
-        return frame;
+        
     }
     
-    public JFrame OrderFrame(){
-        frame = new JFrame("Gerenciamento de Pedidos");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        frame.getContentPane().add(mainPanel);
-        frame.setLocation(480, 170);
-
-        tableModel = new DefaultTableModel();
-        table = new JTable(tableModel);
-        tableModel.addColumn("ID");
-        tableModel.addColumn("Pedido");
-        tableModel.addColumn("Cliente");
-        tableModel.addColumn("Valor");
-        JScrollPane scrollPane = new JScrollPane(table);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel buttonPanel = new JPanel();
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-
-        buttonPanel.add(addOrderButton);
-        buttonPanel.add(editOrderButton);
-        buttonPanel.add(deleteOrderButton);
-        buttonPanel.add(backButton);
-        addOrderButton.addActionListener(app);
-        editOrderButton.addActionListener(app);
-        deleteOrderButton.addActionListener(app);
-        backButton.addActionListener(app);
-
-        frame.pack();
-        frame.setVisible(true);
-        return frame;
-    }
-
-    public JFrame ClientFrame(){
-        frame = new JFrame("Gerenciamento de Clientes");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        frame.getContentPane().add(mainPanel);
-        frame.setLocation(480, 170);
-
-        tableModel = new DefaultTableModel();
-        table = new JTable(tableModel);
-        tableModel.addColumn("Nome");
-        tableModel.addColumn("Endereço");
-        tableModel.addColumn("CPF");
-        tableModel.addColumn("Saldo");
-        JScrollPane scrollPane = new JScrollPane(table);
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-
-        JPanel buttonPanel = new JPanel();
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        buttonPanel.add(addClientButton);
-        buttonPanel.add(editClientButton);
-        buttonPanel.add(deleteClientButton);
-        buttonPanel.add(backButton);
-        addClientButton.addActionListener(app);
-        editClientButton.addActionListener(app);
-        deleteClientButton.addActionListener(app);
-        backButton.addActionListener(app);
-
-        frame.pack();
-        frame.setVisible(true);
-        return frame;
-    }
-
     public String[] createProduct(){
 
         String[] productParams = {"", "", "", ""};
 
-        productParams[0] = JOptionPane.showInputDialog(this, "Nome: ");
+        //prevenir que o input seja vazio
+        do{
+            productParams[0] = JOptionPane.showInputDialog(this, "Nome: ");
+        }while(productParams[0].equals(""));
+
+        //os 3 previnem que outra coisa alem de numero esteja no input
         do{
             try{
                 productParams[1] = JOptionPane.showInputDialog(this, "Preço (em R$): ");
@@ -214,6 +100,105 @@ public class Window extends JFrame{
 
         return productParams;
 
+    }
+
+    public String[] editProduct(){
+
+        String[] newParams = {"", "", ""};
+
+        do{
+            try{
+                newParams[0] = JOptionPane.showInputDialog(this, "ID do Produto: ");
+                Integer.parseInt(newParams[0]);
+                break;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+            }
+        }while(true);
+
+        String[] options = {"Nome", "Preço", "Quantidade"};
+
+        userOption = JOptionPane.showOptionDialog(
+            this, 
+            "O que você desejar alterar?", 
+            "Editar Produto", 
+            JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.QUESTION_MESSAGE, 
+            null, 
+            options, 
+            0);
+
+        if(userOption == 0){
+            newParams[1] = "NAME";
+            newParams[2] = JOptionPane.showInputDialog(this, "Novo Nome: ");
+        }else if(userOption == 1){
+            do{
+                try{
+                    newParams[1] = "PRICE";
+                    newParams[2] = JOptionPane.showInputDialog(this, "Novo Preço: ");
+                    Float.parseFloat(newParams[2]);
+                    break;
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+                }
+
+            }while(true);
+        }else{
+            do{
+                try{
+                    newParams[1] = "QUANTITY";
+                    newParams[2] = JOptionPane.showInputDialog(this, "Nova Quantidade: ");
+                    Integer.parseInt(newParams[2]);
+                    break;
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+                }
+            }while(true);
+        }
+
+        return newParams;
+
+    }
+
+    public int deleteProduct(){
+
+        String[] options = {"Sim", "Não"};
+        int productId;
+
+        do{
+            try{
+                productId = Integer.parseInt(JOptionPane.showInputDialog(this, "ID do Produto: "));
+                break;
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+            }
+        }while(true);
+
+        userOption = JOptionPane.showOptionDialog(
+            this, 
+            "Você tem certeza?", 
+            "Confirmar", 
+            JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.QUESTION_MESSAGE, 
+            null, 
+            options, 
+            0);
+
+        return (userOption == 0) ? productId : -1;
+
+    }
+
+    public JFrame getFrame(){
+        return frame;
+    }
+    public ClientFrame getClientFrame() {
+        return clientFrame;
+    }
+    public ProductFrame getProductFrame() {
+        return productFrame;
+    }
+    public OrderFrame getOrderFrame() {
+        return orderFrame;
     }
 
 }

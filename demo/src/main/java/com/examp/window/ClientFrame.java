@@ -1,51 +1,65 @@
 package com.examp.window;
 
 import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class ClientFrame {
+public class ClientFrame extends JFrame{
     
-    private static JFrame frame;
-    private static JTable clientTable;
-    private static DefaultTableModel tableModel;
+    private JTable clientTable;
+    private DefaultTableModel tableModel;
+
+    private static JButton addButton = new JButton("Adicionar Produto");
+    private static JButton editButton = new JButton("Editar Produto");
+    private static JButton deleteButton = new JButton("Excluir Produto");
+    private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
-    public static JFrame clientFrame(){ 
-        frame = new JFrame("Gerenciamento de Clientes");
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public ClientFrame(){ 
+        this.setTitle("Gerenciamento de Clientes");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                    JPanel mainPanel = new JPanel(new BorderLayout());
-                    frame.getContentPane().add(mainPanel);
-                    frame.setLocation(480, 170);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        this.getContentPane().add(mainPanel);
+        this.setLocation(480, 170);
 
-                    tableModel = new DefaultTableModel();
-                    clientTable = new JTable(tableModel);
-                    tableModel.addColumn("Nome");
-                    tableModel.addColumn("Endereço");
-                    tableModel.addColumn("CPF");
-                    tableModel.addColumn("Saldo");
-                    JScrollPane scrollPane = new JScrollPane(clientTable);
-                    mainPanel.add(scrollPane, BorderLayout.CENTER);
+        tableModel = new DefaultTableModel();
+        clientTable = new JTable(tableModel);
+        tableModel.addColumn("Nome");
+        tableModel.addColumn("Endereço");
+        tableModel.addColumn("CPF");
+        tableModel.addColumn("Saldo");
+        JScrollPane scrollPane = new JScrollPane(clientTable);
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
 
-                    JPanel buttonPanel = new JPanel();
-                    mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        JPanel buttonPanel = new JPanel();
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-                    JButton addButton = new JButton("Adicionar Cliente");
-                    JButton editButton = new JButton("Editar Cliente");
-                    JButton deleteButton = new JButton("Excluir Cliente");
-                    JButton backButton = new JButton("Voltar Ao Menu Principal");
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(backButton);
 
-                    buttonPanel.add(addButton);
-                    buttonPanel.add(editButton);
-                    buttonPanel.add(deleteButton);
-                    buttonPanel.add(backButton);
-
-                    frame.pack();
-                    frame.setVisible(true);
-                    return frame;
+        this.pack();
+        this.setVisible(true);
     }
+    
+    public JTable getClientTable(){
+        return clientTable;
+    }
+    public DefaultTableModel getTableModel(){
+        return tableModel;
+    }
+    public static JButton getAddButton(){
+        return addButton;
+    }
+    public static JButton getEditButton(){
+        return editButton;
+    }
+    public static JButton getDeleteButton(){
+        return deleteButton;
+    }
+    public static JButton getBackButton(){
+        return backButton;
+    }
+    
 }

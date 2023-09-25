@@ -1,26 +1,26 @@
 package com.examp.window;
 
 import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class OrderFrame {
+public class OrderFrame extends JFrame{
     
-    private static JFrame frame;
-    private static JTable orderTable;
-    private static DefaultTableModel tableModel;
+    private JTable orderTable;
+    private DefaultTableModel tableModel;
+
+    private static JButton addButton = new JButton("Adicionar Pedido");
+    private static JButton editButton = new JButton("Editar Pedido");
+    private static JButton deleteButton = new JButton("Excluir Pedido");
+    private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
-    public static JFrame orderFrame(){ 
-        frame = new JFrame("Gerenciamento de Pedidos");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public OrderFrame(){ 
+        this.setTitle("Gerenciamento de Pedidos");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        frame.getContentPane().add(mainPanel);
-        frame.setLocation(480, 170);
+        this.getContentPane().add(mainPanel);
+        this.setLocation(480, 170);
 
         tableModel = new DefaultTableModel();
         orderTable = new JTable(tableModel);
@@ -34,18 +34,32 @@ public class OrderFrame {
         JPanel buttonPanel = new JPanel();
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        JButton addButton = new JButton("Adicionar Pedido");
-        JButton editButton = new JButton("Editar Pedido");
-        JButton deleteButton = new JButton("Excluir Pedido");
-        JButton backButton = new JButton("Voltar Ao Menu Principal");
-
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(backButton);
 
-        frame.pack();
-        frame.setVisible(true);
-        return frame;
+        this.pack();
+        this.setVisible(true);
     }
+
+    public JTable getOrderTable(){
+        return orderTable;
+    }
+    public DefaultTableModel getTableModel(){
+        return tableModel;
+    }
+    public static JButton getAddButton(){
+        return addButton;
+    }
+    public static JButton getEditButton(){
+        return editButton;
+    }
+    public static JButton getDeleteButton(){
+        return deleteButton;
+    }
+    public static JButton getBackButton(){
+        return backButton;
+    }
+    
 }
