@@ -174,33 +174,33 @@ public class Window extends JFrame implements ActionListener{
     }
 
     
-            public static void main(String[] args){
-                new Window();
-            }
+    public static void main(String[] args){
+        new Window();
+    }
 
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource()==addProductButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste adicionar produto");
-                } else if(e.getSource()==editProductButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste editar produto");
-                } else if(e.getSource()==deleteProductButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste deletar produto");
-                } else if(e.getSource()==backButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste voltar");
-                } else if(e.getSource()==addClientButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste adicionar cliente");
-                } else if(e.getSource()==editClientButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste editar cliente");
-                } else if(e.getSource()==deleteClientButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste deletar cliente");
-                }else if(e.getSource()==addOrderButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste adicionar pedido");
-                } else if(e.getSource()==editOrderButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste editar pedido");
-                } else if(e.getSource()==deleteOrderButton){
-                    JOptionPane.showMessageDialog(rootPane, "teste deletar pedido");
-                }
-            }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==addProductButton){
+            
+        }else if(e.getSource()==editProductButton){
+            JOptionPane.showMessageDialog(rootPane, "teste editar produto");
+        }else if(e.getSource()==deleteProductButton){
+            JOptionPane.showMessageDialog(rootPane, "teste deletar produto");
+        }else if(e.getSource()==backButton){
+            JOptionPane.showMessageDialog(rootPane, "teste voltar");
+        }else if(e.getSource()==addClientButton){
+            JOptionPane.showMessageDialog(rootPane, "teste adicionar cliente");
+        }else if(e.getSource()==editClientButton){
+            JOptionPane.showMessageDialog(rootPane, "teste editar cliente");
+        }else if(e.getSource()==deleteClientButton){
+            JOptionPane.showMessageDialog(rootPane, "teste deletar cliente");
+        }else if(e.getSource()==addOrderButton){
+            JOptionPane.showMessageDialog(rootPane, "teste adicionar pedido");
+        }else if(e.getSource()==editOrderButton){
+            JOptionPane.showMessageDialog(rootPane, "teste editar pedido");
+        }else if(e.getSource()==deleteOrderButton){
+            JOptionPane.showMessageDialog(rootPane, "teste deletar pedido");
+        }
+    }
 }

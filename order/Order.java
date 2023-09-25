@@ -1,7 +1,7 @@
 package order;
 
 import client.*;
-import product.*;
+import item.*;
 
 public class Order{
 
