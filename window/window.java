@@ -1,4 +1,3 @@
-//package window;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,9 +7,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class Window extends JFrame implements ActionListener{
 
-    private static JFrame frame = new JFrame("Gerenciamento de Produtos");
-    private static JTable table;
-    private static DefaultTableModel tableModel;
+    private JFrame frame = new JFrame("Gerenciamento de Produtos");
+    private JTable table;
+    private DefaultTableModel tableModel;
     
     JButton addProductButton = new JButton("Adicionar Produto");
     JButton editProductButton = new JButton("Editar Produto");
@@ -83,12 +82,6 @@ public class Window extends JFrame implements ActionListener{
     //###BOTÕES###
         JPanel buttonPanel = new JPanel();
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        addProductButton.setBackground(Color.lightGray);
-        editProductButton.setBackground(Color.lightGray);
-        deleteProductButton.setBackground(Color.lightGray);
-        backButton.setBackground(Color.lightGray);
-        buttonPanel.setBackground(Color.gray);
 
         buttonPanel.add(addProductButton);
         buttonPanel.add(editProductButton);
