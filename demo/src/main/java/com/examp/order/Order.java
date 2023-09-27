@@ -2,15 +2,15 @@ package com.examp.order;
 
 public class Order{
 
-    private String clientCpf, productId;
+    private String clientCpf, productId, id;
     //tempo de entrega em dias
-    private int quantity, id, shipping;
+    private int quantity, shipping;
     
-    public Order(String clientCpf, String productId, int quantity, int id, int shipping) {
+    public Order(String clientCpf, String productId, String id, int quantity, int shipping) {
         this.clientCpf = clientCpf;
         this.productId = productId;
-        this.quantity = quantity;
         this.id = id;
+        this.quantity = quantity;
         this.shipping = shipping;
     }
 
@@ -28,18 +28,18 @@ public class Order{
         this.productId = productId;
     }
     
+    public String getId(){
+        return id;
+    }
+    public void setId(String id){
+        this.id = id;
+    }
+
     public int getQuantity(){
         return quantity;
     }
     public void setQuantity(int quantity){
         this.quantity = quantity;
-    }
-
-    public int getId(){
-        return id;
-    }
-    public void setId(int id){
-        this.id = id;
     }
 
     public int getShipping(){

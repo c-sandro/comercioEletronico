@@ -7,20 +7,20 @@ public class ProductManager{
     //array temporario ate a gente decidir como guardar os dado
     private ArrayList<Product> temp = new ArrayList<>();
 
-    public String addProduct(Product newProduct){
+    public boolean addProduct(Product newProduct){
 
         for(Product productCheck : temp){
 
             if(productCheck.getId() == newProduct.getId()){
 
-                return "Produto com este ID já existe";
+                return false;
 
             }
 
         }
 
         temp.add(newProduct);
-        return "Produto adicionado";
+        return true;
 
     }
 

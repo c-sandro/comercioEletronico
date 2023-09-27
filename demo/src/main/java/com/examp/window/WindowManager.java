@@ -46,6 +46,8 @@ public class WindowManager extends JFrame{
         }else if(userOption == 1){
             this.productFrame.setVisible(true);
 
+            this.app.refreshProduct();
+
             ProductFrame.getAddButton().addActionListener(this.app);
             ProductFrame.getEditButton().addActionListener(this.app);
             ProductFrame.getDeleteButton().addActionListener(this.app);
@@ -54,12 +56,15 @@ public class WindowManager extends JFrame{
         }else if(userOption == 2){
             this.orderFrame.setVisible(true);
 
+            this.app.refreshOrder();
+
             OrderFrame.getAddButton().addActionListener(this.app);
             OrderFrame.getDeleteButton().addActionListener(this.app);
             OrderFrame.getBackButton().addActionListener(this.app);
 
         }else{
             JOptionPane.showMessageDialog(null, "Programa encerrado");
+            
         }
 
     }
@@ -371,6 +376,7 @@ public class WindowManager extends JFrame{
             try{
 
                 productId = JOptionPane.showInputDialog(this, "ID do produto: ");
+                Integer.parseInt(productId);
                 break;
 
             }catch(Exception e){
@@ -430,23 +436,23 @@ public class WindowManager extends JFrame{
 
         }while(true);
         do{
-
+            
             try{
-
-                orderParams[2] = JOptionPane.showInputDialog(this, "Quantidade: ");
+                
+                orderParams[2] = JOptionPane.showInputDialog(this, "ID da ordem: ");
                 Integer.parseInt(orderParams[2]);
                 break;
-
+                
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Coloque um valor válido");
             }
-
+            
         }while(true);
         do{
 
             try{
 
-                orderParams[3] = JOptionPane.showInputDialog(this, "ID da ordem: ");
+                orderParams[3] = JOptionPane.showInputDialog(this, "Quantidade: ");
                 Integer.parseInt(orderParams[3]);
                 break;
 
@@ -457,21 +463,23 @@ public class WindowManager extends JFrame{
         }while(true);
         
         orderParams[4] = Double.toString( Math.floor((Math.random()*15) + 15 ));
+        orderParams[4] = orderParams[4].substring(0, 2);
 
         return orderParams;
 
     }
 
-    public int deleteOrder(){
+    public String deleteOrder(){
 
         String[] options = {"Sim", "Não"};
-        int orderId;
+        String orderId;
 
         do{
 
             try{
 
-                orderId = Integer.parseInt(JOptionPane.showInputDialog(this, "ID da ordem: "));
+                orderId = JOptionPane.showInputDialog(this, "ID da ordem: ");
+                Integer.parseInt(orderId);
                 break;
 
             }catch(Exception e){
@@ -490,7 +498,7 @@ public class WindowManager extends JFrame{
             options, 
             0);
 
-        return (userOption == 0) ? orderId : -1;
+        return (userOption == 0) ? orderId : "";
 
     }
 

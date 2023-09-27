@@ -26,7 +26,8 @@ public class OrderFrame extends JFrame{
         tableModel.addColumn("ID");
         tableModel.addColumn("Pedido");
         tableModel.addColumn("Cliente");
-        tableModel.addColumn("Valor");
+        tableModel.addColumn("Quantidade");
+        tableModel.addColumn("Tempo de entrega");
         JScrollPane scrollPane = new JScrollPane(orderTable);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 

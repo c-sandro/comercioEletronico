@@ -6,37 +6,53 @@ public class OrderManager{
 
     private ArrayList<Order> temp = new ArrayList<>();
 
-    public String addOrder(Order newOrder){
+    public boolean addOrder(Order newOrder){
 
         for(Order orderCheck : temp){
 
-            if(orderCheck.getId() == newOrder.getId()){
+            if(orderCheck.getId().equals(newOrder.getId())){
 
-                return "Ordem com este ID já existe";
+                return false;
 
             }
 
         }
 
         temp.add(newOrder);
-        return "Ordem adicionado";
+        return true;
 
     }
 
-    public String removeProduct(int inputId){
+    public String removeProduct(String inputId){
 
         for(Order productCheck : temp){
 
-            if(productCheck.getId() == inputId){
+            if(productCheck.getId().equals(inputId)){
 
                 temp.remove(productCheck);
-                return "Ordem removido";
+                return "Ordem removida";
 
             }
 
         }
 
         return "Ordem com este id não existe";
+
+    }
+
+    public int scanList(String orderId){
+
+        for(Order orderCheck : temp){
+
+            if(orderCheck.getId().equals(orderId)){
+
+                return temp.indexOf(orderCheck);
+
+            }
+
+        }
+
+        return -1;
 
     }
 

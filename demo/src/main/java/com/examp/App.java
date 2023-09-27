@@ -63,7 +63,7 @@ public class App implements ActionListener{
             this.refreshClient();
             
         }else if(e.getSource() == ClientFrame.getBackButton()){
-
+            
             this.windowManager.getClientFrame().setVisible(false);
             this.windowManager.startWindow();
 
@@ -92,8 +92,8 @@ public class App implements ActionListener{
 
         }else if(e.getSource() == OrderFrame.getAddButton()){
 
-            
-
+            this.addOrder();            
+            this.refreshOrder();
 
         }else if(e.getSource() == OrderFrame.getDeleteButton()){
 
@@ -124,12 +124,15 @@ public class App implements ActionListener{
                                         (productParams[3]),
                                          productParams[4]);
 
-        JOptionPane.showMessageDialog(this.windowManager, productManager.addProduct(newProduct));
+        if(productManager.addProduct(newProduct)){
 
-        if(productManager.scanList(productParams[3]) != -1){
-
+            JOptionPane.showMessageDialog(this.windowManager, "Produto adicionado");
             clientManager.getTemp().get( clientManager.scanList(productParams[4]) ).
                         addClientProduct(productParams[3]);
+
+        }else{
+
+            JOptionPane.showMessageDialog(this.windowManager, "Produto com este ID já existe");
 
         }
 
@@ -169,35 +172,60 @@ public class App implements ActionListener{
         String[] orderParams = this.windowManager.createOrder();
         Order newOrder = new Order(orderParams[0], 
                                    orderParams[1], 
-                   Integer.parseInt(orderParams[2]), 
-                   Integer.parseInt(orderParams[3]),
-                   Integer.parseInt(orderParams[4]));
+                                   orderParams[2], 
+                  Integer.parseInt(orderParams[3]),
+                  Integer.parseInt(orderParams[4]));
 
         Product productCheck = productManager.getTemp().get(productManager.scanList(orderParams[1]));
         Client clientCheck = clientManager.getTemp().get(clientManager.scanList(orderParams[0]));
 
-        if(clientManager.scanList(orderParams[1]) == -1){
+        if(clientManager.scanList(orderParams[0]) == -1){
 
             JOptionPane.showMessageDialog(this.windowManager, "Cliente com este CPF não existe");
             return;
 
-        }else if(productCheck.getQuantity() < Integer.parseInt(orderParams[2])){
+        }else if(productManager.scanList(orderParams[1]) == -1){
+
+            JOptionPane.showMessageDialog(this.windowManager, "Produto com este ID não existe");
+            return;
+
+        }else if(productCheck.getQuantity() < Integer.parseInt(orderParams[3])){
 
             JOptionPane.showMessageDialog(this.windowManager, "Quantidade do produto insuficiente");
             return;
 
-        }else if(clientCheck.getBalance() < Integer.parseInt(orderParams[2]) * productCheck.getPrice()){
+        }else if(clientCheck.getBalance() < Integer.parseInt(orderParams[3]) * productCheck.getPrice()){
 
             JOptionPane.showMessageDialog(this.windowManager, "Saldo insuficiente");
             return;
 
         }
 
-        productManager.getTemp().get(productManager.scanList(orderParams[1])).setQuantity(productCheck.getQuantity() - Integer.parseInt(orderParams[2]));
-        clientManager.getTemp().get(clientManager.scanList(orderParams[0])).setBalance(
-            clientCheck.getBalance() - (productCheck.getPrice() * productCheck.getPrice()));
+        if(orderManager.addOrder(newOrder)){
 
-        JOptionPane.showMessageDialog(this.windowManager, orderManager.addOrder(newOrder));
+            productManager.getTemp().get(productManager.scanList(orderParams[1])).setQuantity(productCheck.getQuantity() - Integer.parseInt(orderParams[3]));
+            clientManager.getTemp().get(clientManager.scanList(orderParams[0])).setBalance(
+                clientCheck.getBalance() - (productCheck.getPrice() * Integer.parseInt(orderParams[3])));
+
+            JOptionPane.showMessageDialog(this.windowManager, "Ordem adicionada");
+
+        }else{
+
+            JOptionPane.showMessageDialog(this.windowManager, "Ordem com este ID já existe");
+
+        }
+
+    }
+
+    public void deleteOrder(){
+
+        String orderId = this.windowManager.deleteProduct();
+
+        if(orderId == ""){
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this.windowManager, productManager.removeProduct(orderId));
 
     }
 
@@ -219,10 +247,13 @@ public class App implements ActionListener{
         //colocar todos os itens da tabela
         for(Client check : clientManager.getTemp()){
 
+            //formatação do cpf pro padrão 123.456.789-12
+            String cpf = check.getCpf().substring(0, 3) + "." + check.getCpf().substring(3, 6) + "." + check.getCpf().substring(6, 9) + "-" + check.getCpf().substring(9);
+
             String[] checkToString = {check.getName(), 
                                       check.getAdress(), 
-                                      check.getCpf(), 
-                       Float.toString(check.getBalance()),
+                                      cpf,
+                "R$" + Float.toString(check.getBalance()),
                                       check.getClientProductsId()};
 
             this.windowManager.getClientFrame().getTableModel().addRow(checkToString);
@@ -249,13 +280,47 @@ public class App implements ActionListener{
         //colocar todos os itens da tabela
         for(Product check : productManager.getTemp()){
 
+            String cpf = check.getSellerCpf().substring(0, 3) + "." + check.getSellerCpf().substring(3, 6) + "." + check.getSellerCpf().substring(6, 9) + "-" + check.getSellerCpf().substring(9);
+
             String[] checkToString = {check.getName(), 
-                       Float.toString(check.getPrice()), 
+                "R$" + Float.toString(check.getPrice()), 
                      Integer.toString(check.getQuantity()), 
                                       check.getId(),
-                                      check.getSellerCpf()};
+                                      cpf};
                        
             this.windowManager.getProductFrame().getTableModel().addRow(checkToString);
+                
+        }
+
+    }
+
+    public void refreshOrder(){
+
+        if(orderManager.getTemp().size() == 0){
+            return;
+        }
+
+        int rowTotal = this.windowManager.getOrderFrame().getTableModel().getRowCount();
+
+        //limpar a tabela
+        for(int i = 0; i < rowTotal; i += 1){
+
+            this.windowManager.getOrderFrame().getTableModel().removeRow(0);
+
+        }
+        
+        //colocar todos os itens da tabela
+        for(Order check : orderManager.getTemp()){
+
+            String cpf = check.getClientCpf().substring(0, 3) + "." + check.getClientCpf().substring(3, 6) + "." + check.getClientCpf().substring(6, 9) + "-" + check.getClientCpf().substring(9);
+
+            String[] checkToString = {cpf, 
+                                      check.getProductId(), 
+                                      check.getId(), 
+                     Integer.toString(check.getQuantity()),
+                     Integer.toString(check.getShipping()) + " dias"};
+                       
+            this.windowManager.getOrderFrame().getTableModel().addRow(checkToString);
                 
         }
 
