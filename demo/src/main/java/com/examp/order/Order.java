@@ -1,36 +1,31 @@
 package com.examp.order;
 
-import com.examp.client.*;
-import com.examp.item.*;
-
 public class Order{
 
-    private Client client;
-    private Product product;
-    //id unico que nem os produtos
+    private String clientCpf, productId;
     //tempo de entrega em dias
     private int quantity, id, shipping;
     
-    public Order(Client client, Product product, int quantity, int id, int shipping) {
-        this.client = client;
-        this.product = product;
+    public Order(String clientCpf, String productId, int quantity, int id, int shipping) {
+        this.clientCpf = clientCpf;
+        this.productId = productId;
         this.quantity = quantity;
         this.id = id;
         this.shipping = shipping;
     }
 
-    public Client getClient(){
-        return client;
+    public String getClientCpf(){
+        return clientCpf;
     }
-    public void setClient(Client client){
-        this.client = client;
+    public void setClient(String clientCpf){
+        this.clientCpf = clientCpf;
     }
 
-    public Product getProduct(){
-        return product;
+    public String getProductId(){
+        return productId;
     }
-    public void setProduct(Product product){
-        this.product = product;
+    public void setProduct(String productId){
+        this.productId = productId;
     }
     
     public int getQuantity(){

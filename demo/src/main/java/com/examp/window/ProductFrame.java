@@ -43,7 +43,7 @@ public class ProductFrame extends JFrame{
         buttonPanel.add(backButton);
 
         this.pack();
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public JTable getProductTable(){

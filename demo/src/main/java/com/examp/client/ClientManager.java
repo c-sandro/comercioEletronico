@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class ClientManager{
 
-    ArrayList<Client> temp = new ArrayList<>();
+    private ArrayList<Client> temp = new ArrayList<>();
 
     public String addClient(Client newClient){
 
         for(Client clientCheck : temp){
 
-            if(clientCheck.getCpf() == newClient.getCpf()){
+            if(clientCheck.getCpf().equals(newClient.getCpf())){
 
-                return "Ja existe um cliente com este CPF";
-
+                return "Cliente com este CPF já existe";
+                
             }
 
         }
@@ -23,60 +23,58 @@ public class ClientManager{
 
     }
 
-    public String editClient(int inputCpf, String option, String newVar){
-
-        if(scanList(inputCpf) == -1){
-            return "CPF não existe";
-        }
+    public String editClient(String inputCpf, String option, String newVar){
 
         int clientId = scanList(inputCpf);
 
-        switch(option){
+        if(clientId == -1){
+            return "Cliente com este CPF não existe";
+        }
 
+        switch(option){
             case "NAME":
 
                 temp.get(clientId).setName(newVar);
-                return "Nome alterado";
 
+            break;
             case "ADRESS":
             
                 temp.get(clientId).setAdress(newVar);
-                return "Endereço alterado";
 
+            break;
             case "BALANCE":
 
                 temp.get(clientId).setBalance(Integer.parseInt(newVar));
-                return "Saldo alterado";
             
-            default:
+            break;
+        }
 
-                return null;
-        }        
+        return "Valor alterado";
 
     }
 
-    public String removeProduct(int inputCpf){
+    public String removeClient(String inputCpf){
 
         for(Client productCheck : temp){
 
-            if(productCheck.getCpf() == inputCpf){
+            if(productCheck.getCpf().equals(inputCpf)){
 
                 temp.remove(productCheck);
-                return "Produto removido";
+                return "Cliente removido";
 
             }
 
         }
 
-        return "Produto com este id não encontrado";
+        return "Cliente com este CPF não existe";
 
     }
 
-    private int scanList(int cpf){
+    public int scanList(String cpf){
 
         for(Client productCheck : temp){
 
-            if(productCheck.getCpf() == cpf){
+            if(productCheck.getCpf().equals(cpf)){
 
                 return temp.indexOf(productCheck);
 
@@ -87,6 +85,9 @@ public class ClientManager{
         return -1;
 
     }
-    
+
+    public ArrayList<Client> getTemp() {
+        return temp;
+    }
     
 }

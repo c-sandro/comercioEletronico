@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ProductManager{
 
     //array temporario ate a gente decidir como guardar os dado
-    ArrayList<Product> temp = new ArrayList<>();
+    private ArrayList<Product> temp = new ArrayList<>();
 
     public String addProduct(Product newProduct){
 
@@ -13,7 +13,7 @@ public class ProductManager{
 
             if(productCheck.getId() == newProduct.getId()){
 
-                return "ID ja está sendo utilizado";
+                return "Produto com este ID já existe";
 
             }
 
@@ -24,44 +24,41 @@ public class ProductManager{
 
     }
 
-    public String editProduct(int inputId, String option, String newVar){
+    public String editProduct(String inputId, String option, String newVar){
 
         if(scanList(inputId) == -1){
-            return "Produto com ID não encontrado";
+            return "Produto com este ID não existe";
         }
 
         int productId = scanList(inputId);
 
         switch(option){
-
             case "NAME":
 
                 temp.get(productId).setName(newVar);
-                return "Nome alterado";
-
+            
+            break;
             case "PRICE":
             
                 temp.get(productId).setPrice(Float.parseFloat(newVar));
-                return "Preço alterado";
 
+            break;
             case "QUANTITY":
 
                 temp.get(productId).setQuantity(Integer.parseInt(newVar));
-                return "Preço alterado";
             
-            default:
-
-                return null;
+            break;
         }
 
+        return "Valor alterado";
 
     }
 
-    public String removeProduct(int inputId){
+    public String removeProduct(String inputId){
 
         for(Product productCheck : temp){
 
-            if(productCheck.getId() == inputId){
+            if(productCheck.getId().equals(inputId)){
 
                 temp.remove(productCheck);
                 return "Produto removido";
@@ -70,15 +67,15 @@ public class ProductManager{
 
         }
 
-        return "Produto com ID não encontrado";
+        return "Produto com este ID não existe";
 
     }
 
-    private int scanList(int id){
+    public int scanList(String productId){
 
         for(Product productCheck : temp){
 
-            if(productCheck.getId() == id){
+            if(productCheck.getId().equals(productId)){
 
                 return temp.indexOf(productCheck);
 
@@ -88,6 +85,10 @@ public class ProductManager{
 
         return -1;
 
+    }
+
+    public ArrayList<Product> getTemp() {
+        return temp;
     }
     
 }

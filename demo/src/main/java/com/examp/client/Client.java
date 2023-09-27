@@ -2,23 +2,20 @@ package com.examp.client;
 
 import java.util.ArrayList;
 
-import com.examp.order.*;
-
 public class Client{
 
-    private String name, adress;
-    private int cpf;
+    private String name, adress, cpf;
     private float balance;
-    //guarda as ordens do cliente
-    private ArrayList<Order> clientOrders; 
+    //guarda os produtos do cliente
+    private ArrayList<String> clientProductsId; 
 
-    public Client(String name, String adress, int cpf, float balance){
+    public Client(String name, String adress, String cpf, float balance){
 
         this.name = name;
         this.adress = adress;
         this.cpf = cpf;
         this.balance = balance;
-        this.clientOrders = new ArrayList<>();
+        this.clientProductsId = new ArrayList<>();
 
     }
 
@@ -36,10 +33,10 @@ public class Client{
         this.adress = adress;
     }
 
-    public int getCpf(){
+    public String getCpf(){
         return cpf;
     }
-    public void setCpf(int cpf){
+    public void setCpf(String cpf){
         this.cpf = cpf;
     }
 
@@ -50,12 +47,34 @@ public class Client{
         this.balance = balance;
     }
 
-    public ArrayList<Order> getClientOrders(){
-        return clientOrders;
-    }
-    public void addClientOrder(Order newOrder){
+    public String getClientProductsId(){
 
-        this.clientOrders.add(newOrder);
+        if(this.clientProductsId.size() == 0){
+
+            return "";
+
+        }
+
+        String toString = "";
+
+        for(String id : this.clientProductsId){
+
+            toString += id + ", ";
+
+        }
+
+        toString = toString.substring(0, toString.length() - 2);
+
+        return toString;
+    }
+    public void addClientProduct(String newProduct){
+
+        this.clientProductsId.add(newProduct);
+
+    }
+    public void removeClientProduct(String newProduct){
+
+        this.clientProductsId.remove(newProduct);
 
     }
 }

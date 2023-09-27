@@ -10,7 +10,6 @@ public class OrderFrame extends JFrame{
     private DefaultTableModel tableModel;
 
     private static JButton addButton = new JButton("Adicionar Pedido");
-    private static JButton editButton = new JButton("Editar Pedido");
     private static JButton deleteButton = new JButton("Excluir Pedido");
     private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
@@ -35,12 +34,11 @@ public class OrderFrame extends JFrame{
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         buttonPanel.add(addButton);
-        buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
         buttonPanel.add(backButton);
 
         this.pack();
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public JTable getOrderTable(){
@@ -51,9 +49,6 @@ public class OrderFrame extends JFrame{
     }
     public static JButton getAddButton(){
         return addButton;
-    }
-    public static JButton getEditButton(){
-        return editButton;
     }
     public static JButton getDeleteButton(){
         return deleteButton;

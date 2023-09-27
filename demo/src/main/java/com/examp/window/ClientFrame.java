@@ -9,9 +9,9 @@ public class ClientFrame extends JFrame{
     private JTable clientTable;
     private DefaultTableModel tableModel;
 
-    private static JButton addButton = new JButton("Adicionar Produto");
-    private static JButton editButton = new JButton("Editar Produto");
-    private static JButton deleteButton = new JButton("Excluir Produto");
+    private static JButton addButton = new JButton("Adicionar Cliente");
+    private static JButton editButton = new JButton("Editar Cliente");
+    private static JButton deleteButton = new JButton("Excluir Cliente");
     private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
     public ClientFrame(){ 
@@ -28,6 +28,7 @@ public class ClientFrame extends JFrame{
         tableModel.addColumn("Endereço");
         tableModel.addColumn("CPF");
         tableModel.addColumn("Saldo");
+        tableModel.addColumn("Produtos");
         JScrollPane scrollPane = new JScrollPane(clientTable);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
@@ -40,7 +41,7 @@ public class ClientFrame extends JFrame{
         buttonPanel.add(backButton);
 
         this.pack();
-        this.setVisible(true);
+        this.setVisible(false);
     }
     
     public JTable getClientTable(){

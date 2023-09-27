@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class OrderManager{
 
-    ArrayList<Order> temp = new ArrayList<>();
+    private ArrayList<Order> temp = new ArrayList<>();
 
     public String addOrder(Order newOrder){
 
@@ -12,7 +12,7 @@ public class OrderManager{
 
             if(orderCheck.getId() == newOrder.getId()){
 
-                return "Ja existe um com este ID";
+                return "Ordem com este ID já existe";
 
             }
 
@@ -36,8 +36,12 @@ public class OrderManager{
 
         }
 
-        return "Ordem com este id não encontrado";
+        return "Ordem com este id não existe";
 
+    }
+
+    public ArrayList<Order> getTemp() {
+        return temp;
     }
     
 }
