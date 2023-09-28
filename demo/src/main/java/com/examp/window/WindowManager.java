@@ -95,9 +95,11 @@ public class WindowManager extends JFrame{
                 }
 
                 JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+                
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+                
             }
         }while(true);
         do{
@@ -109,6 +111,7 @@ public class WindowManager extends JFrame{
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Coloque um valor válido");
+                
             }
         }while(true);
 
@@ -122,7 +125,7 @@ public class WindowManager extends JFrame{
 
         do{
             try{
-                newParams[0] = JOptionPane.showInputDialog(this, "CPF do client: ");
+                newParams[0] = JOptionPane.showInputDialog(this, "CPF do cliente: ");
                 Long.parseLong(newParams[0]);
                 if(newParams[0].length() == 11){
                     break;
@@ -161,7 +164,7 @@ public class WindowManager extends JFrame{
                 newParams[2] = JOptionPane.showInputDialog(this, "Novo endereço: ");
             }while(newParams[2].equals(""));
 
-        }else{
+        }else if(userOption == 2){
 
             do{
                 try{
@@ -178,6 +181,8 @@ public class WindowManager extends JFrame{
 
             }while(true);
 
+        } else {
+
         }
 
         return newParams;
@@ -193,7 +198,11 @@ public class WindowManager extends JFrame{
             try{
 
                 clientCpf = JOptionPane.showInputDialog(this, "CPF do cliente: ");
-                break;
+                Integer.parseInt(clientCpf);
+                if(clientCpf.length() == 11){
+                    break;
+                }
+                JOptionPane.showMessageDialog(this, "Coloque um valor válido");
 
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Coloque um valor válido");
