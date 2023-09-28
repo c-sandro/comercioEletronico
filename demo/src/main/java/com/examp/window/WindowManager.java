@@ -64,7 +64,7 @@ public class WindowManager extends JFrame{
 
         }else{
             JOptionPane.showMessageDialog(null, "Programa encerrado");
-            
+            System.exit(0);
         }
 
     }
@@ -158,7 +158,7 @@ public class WindowManager extends JFrame{
             newParams[1] = "ADRESS";
 
             do{
-                newParams[2] = JOptionPane.showInputDialog(this, "Novo nome: ");
+                newParams[2] = JOptionPane.showInputDialog(this, "Novo endereço: ");
             }while(newParams[2].equals(""));
 
         }else{

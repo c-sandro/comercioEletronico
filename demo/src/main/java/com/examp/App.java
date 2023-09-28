@@ -97,7 +97,8 @@ public class App implements ActionListener{
 
         }else if(e.getSource() == OrderFrame.getDeleteButton()){
 
-            JOptionPane.showMessageDialog(this.windowManager, "teste deletar pedido");
+            this.deleteOrder();
+            this.refreshOrder();
 
         }else if(e.getSource() == OrderFrame.getBackButton()){
             
@@ -207,11 +208,11 @@ public class App implements ActionListener{
             clientManager.getTemp().get(clientManager.scanList(orderParams[0])).setBalance(
                 clientCheck.getBalance() - (productCheck.getPrice() * Integer.parseInt(orderParams[3])));
 
-            JOptionPane.showMessageDialog(this.windowManager, "Ordem adicionada");
+            JOptionPane.showMessageDialog(this.windowManager, "Pedido adicionado");
 
         }else{
 
-            JOptionPane.showMessageDialog(this.windowManager, "Ordem com este ID já existe");
+            JOptionPane.showMessageDialog(this.windowManager, "Pedido com este ID já existe");
 
         }
 
