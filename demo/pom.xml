@@ -4,9 +4,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
+  <groupId>com.devmedia</groupId>
   <artifactId>demo</artifactId>
-  <version>a</version>
+  <version>0.0.1</version>
 
   <name>demo</name>
   <!-- FIXME change it to the project's website -->
@@ -26,10 +26,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml-schemas</artifactId>
-    <version>4.1.2</version>
-</dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.10.1</version>
+    </dependency>
   </dependencies>
 
   <build>
