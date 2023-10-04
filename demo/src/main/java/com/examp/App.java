@@ -40,7 +40,7 @@ public class App implements ActionListener{
 
             JOptionPane.showMessageDialog(this.windowManager, clientManager.addClient(newClient));
 
-            this.refreshClient();
+            this.refreshClient(false);
 
         }else if(e.getSource() == ClientFrame.getEditButton()){
 
@@ -48,7 +48,7 @@ public class App implements ActionListener{
 
             JOptionPane.showMessageDialog(this.windowManager, clientManager.editClient(newParams[0], newParams[1], newParams[2]));
 
-            this.refreshClient();
+            this.refreshClient(false);
 
         }else if(e.getSource() == ClientFrame.getDeleteButton()){
 
@@ -60,7 +60,7 @@ public class App implements ActionListener{
 
             JOptionPane.showMessageDialog(this.windowManager, clientManager.removeClient(clientId));
 
-            this.refreshClient();
+            this.refreshClient(true);
             
         }else if(e.getSource() == ClientFrame.getBackButton()){
             
@@ -70,7 +70,7 @@ public class App implements ActionListener{
         }else if(e.getSource() == ProductFrame.getAddButton()){
 
             this.addProduct();
-            this.refreshProduct();
+            this.refreshProduct(false);
 
         }else if(e.getSource() == ProductFrame.getEditButton()){
 
@@ -78,12 +78,12 @@ public class App implements ActionListener{
 
             JOptionPane.showMessageDialog(this.windowManager, productManager.editProduct(newParams[0], newParams[1], newParams[2]));
 
-            this.refreshProduct();
+            this.refreshProduct(false);
 
         }else if(e.getSource() == ProductFrame.getDeleteButton()){
 
             this.deleteProduct();
-            this.refreshProduct();
+            this.refreshProduct(true);
             
         }else if(e.getSource() == ProductFrame.getBackButton()){
             
@@ -93,12 +93,12 @@ public class App implements ActionListener{
         }else if(e.getSource() == OrderFrame.getAddButton()){
 
             this.addOrder();            
-            this.refreshOrder();
+            this.refreshOrder(false);
 
         }else if(e.getSource() == OrderFrame.getDeleteButton()){
 
             this.deleteOrder();
-            this.refreshOrder();
+            this.refreshOrder(true);
 
         }else if(e.getSource() == OrderFrame.getBackButton()){
             
@@ -220,19 +220,18 @@ public class App implements ActionListener{
 
     public void deleteOrder(){
 
-        String orderId = this.windowManager.deleteProduct();
+        String orderId = this.windowManager.deleteOrder();
 
-        if(orderId == ""){
+        if(orderId.equals("")){
             return;
         }
 
-        JOptionPane.showMessageDialog(this.windowManager, productManager.removeProduct(orderId));
-
+        JOptionPane.showMessageDialog(this.windowManager, orderManager.removeOrder(orderId));
     }
 
-    public void refreshClient(){
+    public void refreshClient(boolean isDeleting){
 
-        if(clientManager.getTemp().size() == 0){
+        if(clientManager.getTemp().size() == 0 && !isDeleting){
             return;
         }
 
@@ -263,9 +262,9 @@ public class App implements ActionListener{
 
     }
 
-    public void refreshProduct(){
+    public void refreshProduct(boolean isDeleting){
 
-        if(productManager.getTemp().size() == 0){
+        if(productManager.getTemp().size() == 0 && !isDeleting){
             return;
         }
 
@@ -295,9 +294,9 @@ public class App implements ActionListener{
 
     }
 
-    public void refreshOrder(){
+    public void refreshOrder(boolean isDeleting){
 
-        if(orderManager.getTemp().size() == 0){
+        if(orderManager.getTemp().size() == 0 && !isDeleting){
             return;
         }
 

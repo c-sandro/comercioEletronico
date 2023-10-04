@@ -36,7 +36,7 @@ public class WindowManager extends JFrame{
         if(userOption == 0){
             this.clientFrame.setVisible(true);
 
-            this.app.refreshClient();
+            this.app.refreshClient(false);
 
             ClientFrame.getAddButton().addActionListener(this.app);
             ClientFrame.getEditButton().addActionListener(this.app);
@@ -46,7 +46,7 @@ public class WindowManager extends JFrame{
         }else if(userOption == 1){
             this.productFrame.setVisible(true);
 
-            this.app.refreshProduct();
+            this.app.refreshProduct(false);
 
             ProductFrame.getAddButton().addActionListener(this.app);
             ProductFrame.getEditButton().addActionListener(this.app);
@@ -56,7 +56,7 @@ public class WindowManager extends JFrame{
         }else if(userOption == 2){
             this.orderFrame.setVisible(true);
 
-            this.app.refreshOrder();
+            this.app.refreshOrder(false);
 
             OrderFrame.getAddButton().addActionListener(this.app);
             OrderFrame.getDeleteButton().addActionListener(this.app);
@@ -198,7 +198,7 @@ public class WindowManager extends JFrame{
             try{
 
                 clientCpf = JOptionPane.showInputDialog(this, "CPF do cliente: ");
-                Integer.parseInt(clientCpf);
+                Long.parseLong(clientCpf);
                 if(clientCpf.length() == 11){
                     break;
                 }

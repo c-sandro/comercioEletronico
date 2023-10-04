@@ -23,13 +23,13 @@ public class OrderManager{
 
     }
 
-    public String removeProduct(String inputId){
+    public String removeOrder(String inputId){
 
-        for(Order productCheck : temp){
+        for(Order orderCheck : temp){
 
-            if(productCheck.getId().equals(inputId)){
+            if(orderCheck.getId().equals(inputId)){
 
-                temp.remove(productCheck);
+                temp.remove(orderCheck);
                 return "Ordem removida";
 
             }

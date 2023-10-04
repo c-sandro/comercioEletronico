@@ -55,11 +55,11 @@ public class ClientManager{
 
     public String removeClient(String inputCpf){
 
-        for(Client productCheck : temp){
+        for(Client clientCheck : temp){
 
-            if(productCheck.getCpf().equals(inputCpf)){
+            if(clientCheck.getCpf().equals(inputCpf)){
 
-                temp.remove(productCheck);
+                temp.remove(clientCheck);
                 return "Cliente removido";
 
             }
@@ -72,11 +72,11 @@ public class ClientManager{
 
     public int scanList(String cpf){
 
-        for(Client productCheck : temp){
+        for(Client clientCheck : temp){
 
-            if(productCheck.getCpf().equals(cpf)){
+            if(clientCheck.getCpf().equals(cpf)){
 
-                return temp.indexOf(productCheck);
+                return temp.indexOf(clientCheck);
 
             }
 
