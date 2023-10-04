@@ -62,7 +62,7 @@ public class WindowManager extends JFrame{
             OrderFrame.getDeleteButton().addActionListener(this.app);
             OrderFrame.getBackButton().addActionListener(this.app);
 
-        }else{
+        }else if(userOption == 3){
             JOptionPane.showMessageDialog(null, "Programa encerrado");
             System.exit(0);
         }

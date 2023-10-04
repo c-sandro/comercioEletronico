@@ -1,3 +1,2 @@
 # comercio-eletronico
-
-projeto para a atividade de Programação Orientada a Objetos, baseado em Java
+<h1>Projeto de comércio eletrônico</h1>
