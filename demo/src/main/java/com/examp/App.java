@@ -8,6 +8,11 @@ import com.examp.item.*;
 import com.examp.order.*;
 import com.examp.window.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+
 public class App implements ActionListener{
 
     WindowManager windowManager;
@@ -19,10 +24,28 @@ public class App implements ActionListener{
 
         this.windowManager = new WindowManager(this);
 
+        Cadastrar cadastrar = new Cadastrar();
+        String url = "files/ajuda.csv" ;
+
+        cadastrar.CadastarProduto("julia", "café", "8990101", url);
+        
+        System.out.println("arquivo executado com sucesso!");
     }
 
     public static void main(String[] args){
-       
+
+
+        try {
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/banco_java", "postgres", "carolline*mello");
+            if (conexao != null) {
+                System.out.println("Banco de dados conectado");
+            } else {
+                System.out.println("Conexao falhou");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         new App();
 
     }
@@ -324,5 +347,6 @@ public class App implements ActionListener{
                 
         }
 
+        
     }
 }
