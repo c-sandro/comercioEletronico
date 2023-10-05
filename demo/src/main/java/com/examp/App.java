@@ -1,12 +1,17 @@
 package com.examp;
 
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javax.swing.*;
 
 import com.examp.client.*;
 import com.examp.item.*;
 import com.examp.order.*;
 import com.examp.window.*;
+
 
 
 public class App implements ActionListener{
@@ -20,18 +25,43 @@ public class App implements ActionListener{
 
         this.windowManager = new WindowManager(this);
 
-        Cadastrar cadastrar = new Cadastrar();
-        String url = "files/nome.csv" ;
-        String url2 = "files/produtos.csv";
+        String diretorio = "filo";
+        String nomeArquivo = "teste.csv";
+        String caminhoCompleto = diretorio + File.separator + nomeArquivo;
 
-        cadastrar.CadastrarNomes("jose", "silva", url);
-        cadastrar.CadastrarNomes("maria", "silva", url);
-        cadastrar.CadastrarNomes("Sabonete", "6 unidades", url2);
-        cadastrar.CadastrarNomes("shampoo", "12 unidades", url2);
-        
-        System.out.println("arquivo executado com sucesso!");
+        try {
+            FileWriter writer = new FileWriter(caminhoCompleto);
+            // Escreva dados no arquivo CSV aquiwriter.write("Nome,Idade\n");
+            writer.write("Alice,30\n");
+            writer.write("Bob,25\n");
+            writer.close();
+
+            System.out.println("Arquivo CSV criado em: " + caminhoCompleto);
+
+            //Abre origrama externo (excel)
+            abrirArquivoCSV(caminhoCompleto);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Erro ao criar o arquivo CSV.");
+        }
     }
 
+    private static void abrirArquivoCSV(String caminho) {
+        try {
+            // Abra o arquivo CSV com o programa padrão associado ao formato CSV.
+            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", "start", "\"\"", caminho);
+            pb.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Erro ao abrir o arquivo CSV.");
+        }
+    }
+
+
+
+
+    
+    
     public static void main(String[] args){
 
         new App();
