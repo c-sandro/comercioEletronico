@@ -22,7 +22,6 @@ public class App implements ActionListener{
     }
 
     public static void main(String[] args){
-       
         new App();
 
     }
