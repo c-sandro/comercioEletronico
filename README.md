@@ -1,5 +1,5 @@
 # Demo
-Plataforma de E-commerce desenvolvida para exercício da matéria de Programação Orientada à objetos do <i>Centro Universitário do Pará</i>(<b><i>CESUPA</i></b>). Essa plataforma possui ligações com uma interface gráfica e arquivos CSV, com o objetivo de melhorar a experiência do usuário com o software. 
+Plataforma de E-commerce desenvolvida para exercício da matéria de Programação Orientada à objetos do <i>Centro Universitário do Pará</i>(<b><i>CESUPA</i></b>). Essa plataforma possui ligações com uma interface gráfica e arquivos CSV -usados para o transporte das informações submetidas pelo usuário para uma planilha, podendo ser aberta no programa EXCEL-, com o objetivo de melhorar a experiência do usuário com o software. 
 <hr>
 <h1>Tutorial</h1>
 Quando o porgrama for executado, você vai se deparar com uma tela em que você terá que escolher o que deseja gerenciar. Após sua decisão, abrirá a tela de gerenciamento da opção escolhida que contém a lista de produtos/clientes/pedidos registrados no sistema.
