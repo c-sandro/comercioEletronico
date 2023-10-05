@@ -1,5 +1,5 @@
 # Demo
-Projeto feito para exercício da matéria de Programação Orientada à objetos do <i>Centro Universitário do Pará</i>(<b><i>CESUPA</i></b>)
+Plataforma de E-commerce feito para exercício da matéria de Programação Orientada à objetos do <i>Centro Universitário do Pará</i>(<b><i>CESUPA</i></b>)
 <hr>
 <h1>Tutorial</h1>
 Quando o porgrama for executado, você vai se deparar com uma tela em que você terá que escolher o que deseja gerenciar. Após sua decisão, abrirá a tela de gerenciamento da opção escolhida que contém a lista de produtos/clientes/pedidos registrados no sistema.
