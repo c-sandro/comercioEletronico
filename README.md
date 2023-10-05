@@ -85,6 +85,14 @@ ID do pedido: ID em que o produto foi registrado(Somente números). Ex: "123"<br
 <b><i>Depois</i></b> de selecionar a opção que deseja, é só esperar pelo aviso de pedido deletado e verificar a lista.
 <br><br>
 
+<h2>Botão de Importar:</h2> 
+Este botão importa um cliente do arquivo CSV e cria um cliente na interface.
+<br><br>
+
+<h2>Botão de Exportar:</h2> 
+Este botão exporta os dados do cliente selecionado,por CPF, para o arquivo CSV do objeto.
+<br><br>
+
 <hr>
 
 <h1>Desenvolvido por:</h1> <h3>Carlos Sandro Gonçalves, Giovanni Gomes, Carolline Mello, Ana Luisa Souto</h3>
