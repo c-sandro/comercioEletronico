@@ -26,8 +26,6 @@ public class Cadastrar {
             System.err.println("Erro ao cadastrar nomes no arquivo.");
         }
     }
-
-
     public String UnicaLinha(List<String> existentes) {
 
         String unicaLinha = "";

@@ -56,11 +56,8 @@ public class App implements ActionListener{
             System.err.println("Erro ao abrir o arquivo CSV.");
         }
     }
-
-
-
-
     
+
     
     public static void main(String[] args){
 
