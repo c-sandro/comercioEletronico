@@ -1,8 +1,7 @@
 package com.examp;
 
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,51 +10,55 @@ import java.util.List;
 
 public class Cadastrar {
 
-    public void CadastarProduto(String cliente, String produto, String order, String url) {
+    public void CadastrarNomes(String nome, String sobrenome, String url) {
+        CriarArquivo(url);
+
         try {
-
-            Path path = Paths.get(url);
-            if (!Files.exists(path)) {
-                
-                Files.createFile(path);
-            }
-
             List<String> existentes = LinhaExistentes(url);
-
-    
-            String linha = cliente + ";" + produto + ";" + order;
+            String linha = nome + ";" + sobrenome + ";";
             existentes.add(linha);
 
+            // adicionar no csv
+            String todasLinhas = UnicaLinha(existentes);
             FileWriter arquivo = new FileWriter(url);
-            try (BufferedWriter writer = new BufferedWriter(arquivo)) {
-                for (String existente : existentes) {
-                    writer.write(existente);
-                    writer.newLine();
-                }
-            }
-            System.out.println("Produto cadastrado com sucesso!");
+            arquivo.write(todasLinhas);
+            arquivo.close();
 
-        } catch (IOException error) {
-            System.err.println("Erro ao gerar o arquivo: " + error.getMessage());
+        } catch (Exception error) {
+            System.out.println("Erro ao gerar o arquivo " + url);
+        }
+    }
+
+    public String UnicaLinha(List<String> existentes) {
+
+        String unicaLinha = "";
+        for (String linha : existentes) {
+            unicaLinha += linha + " \n";
+        }
+        return unicaLinha;
+    }
+
+    public void CriarArquivo(String url) {
+
+        try {
+            File arquivo = new File(url);
+            arquivo.createNewFile();
+        } catch (Exception erro) {
+            System.out.println("Erro ao criar arquivo.");
         }
     }
 
     public List<String> LinhaExistentes(String url) {
-        List<String> result = new ArrayList<>();
+
+        List<String> result = new ArrayList<String>();
 
         try {
             Path path = Paths.get(url);
             result = Files.readAllLines(path);
-        } catch (IOException erro) {
-            System.err.println("Erro ao ler arquivo: " + erro.getMessage());
+        } catch (Exception erro) {
+            System.out.println("Erro ao ler o arquivo.");
         }
+
         return result;
-    }
-
-    public static void main(String[] args) {
-        Cadastrar cadastrar = new Cadastrar();
-        String url = "files/teste.csv";
-
-        cadastrar.CadastarProduto("julia", "café", "8990101", url);
     }
 }
