@@ -14,6 +14,7 @@ public class App implements ActionListener{
     ClientManager clientManager = new ClientManager();
     ProductManager productManager = new ProductManager();
     OrderManager orderManager = new OrderManager();
+    Cadastrar register = new Cadastrar();
 
     public App(){
 
@@ -37,9 +38,21 @@ public class App implements ActionListener{
                                           clientParams[2], 
                          Float.parseFloat(clientParams[3]));
 
-            JOptionPane.showMessageDialog(this.windowManager, clientManager.addClient(newClient));
+            if(clientManager.addClient(newClient)){
 
+                JOptionPane.showMessageDialog(this.windowManager, "Ciente adicionado");
+    
+                String url = "comercioEletronico\\files\\clients";
+
+                register.AddClient(clientParams[0], clientParams[1], clientParams[2], url);
+
+            }else{
+
+                JOptionPane.showMessageDialog(this.windowManager, "Cliente com este CPF não existe");
+                
+            }
             this.refreshClient(false);
+
 
         }else if(e.getSource() == ClientFrame.getEditButton()){
 
@@ -130,6 +143,10 @@ public class App implements ActionListener{
             clientManager.getTemp().get( clientManager.scanList(productParams[4]) ).
                         addClientProduct(productParams[3]);
 
+            String url = "comercioEletronico\\files\\products.csv";
+    
+            register.addProduct(productParams[0], productParams[1], productParams[2],productParams[3], url);
+
         }else{
 
             JOptionPane.showMessageDialog(this.windowManager, "Produto com este ID já existe");
@@ -208,6 +225,10 @@ public class App implements ActionListener{
                 clientCheck.getBalance() - (productCheck.getPrice() * Integer.parseInt(orderParams[3])));
 
             JOptionPane.showMessageDialog(this.windowManager, "Pedido adicionado");
+
+            String url = "comercioEletronico\\files\\order.csv";
+
+            register.addOrder(orderParams[0], orderParams[1], orderParams[2], orderParams[3],orderParams[4], url);
 
         }else{
 

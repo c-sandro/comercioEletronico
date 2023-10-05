@@ -116,12 +116,6 @@ public class WindowManager extends JFrame{
             }
         }while(true);
 
-        Cadastrar cadastrar = new Cadastrar();
-
-        String url = "C:\\ProjetoIsaac\\files\\clients.csv";
-
-        cadastrar.CadastrarClientes(clientParams[0], clientParams[1], clientParams[2], url);
-
         return clientParams;
 
     }
@@ -297,12 +291,6 @@ public class WindowManager extends JFrame{
             }
 
         }while(true);
-
-        Cadastrar cadastrar = new Cadastrar();
-
-        String url = "C:\\ProjetoIsaac\\files\\products.csv";
-
-        cadastrar.CadastrarProdutos(productParams[0], productParams[1], productParams[2],productParams[3], url);
 
         return productParams;
 
@@ -486,13 +474,7 @@ public class WindowManager extends JFrame{
         
         orderParams[4] = Double.toString( Math.floor((Math.random()*15) + 15 ));
         orderParams[4] = orderParams[4].substring(0, 2);
-
-        Cadastrar cadastrar = new Cadastrar();
-
-        String url = "C:\\ProjetoIsaac\\files\\orders.csv";
         
-        cadastrar.CadastrarPedidos(orderParams[0], orderParams[1], orderParams[2], orderParams[3],orderParams[4], url);
-
         return orderParams;
     }
 

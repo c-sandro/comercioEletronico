@@ -6,20 +6,20 @@ public class ClientManager{
 
     private ArrayList<Client> temp = new ArrayList<>();
 
-    public String addClient(Client newClient){
+    public boolean addClient(Client newClient){
 
         for(Client clientCheck : temp){
 
             if(clientCheck.getCpf().equals(newClient.getCpf())){
 
-                return "Cliente com este CPF já existe";
+                return false;
                 
             }
 
         }
 
         temp.add(newClient);
-        return "Cliente adicionado";
+        return true;
 
     }
 
