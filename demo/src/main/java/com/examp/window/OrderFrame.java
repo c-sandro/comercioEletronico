@@ -11,6 +11,8 @@ public class OrderFrame extends JFrame{
 
     private static JButton addButton = new JButton("Adicionar Pedido");
     private static JButton deleteButton = new JButton("Excluir Pedido");
+    private static JButton exportButton = new JButton("Exportar Produto");
+    private static JButton importButton = new JButton("Importar Produto");
     private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
     public OrderFrame(){ 
@@ -36,6 +38,8 @@ public class OrderFrame extends JFrame{
 
         buttonPanel.add(addButton);
         buttonPanel.add(deleteButton);
+        buttonPanel.add(exportButton);
+        buttonPanel.add(importButton);
         buttonPanel.add(backButton);
 
         this.pack();
@@ -53,6 +57,12 @@ public class OrderFrame extends JFrame{
     }
     public static JButton getDeleteButton(){
         return deleteButton;
+    }
+    public static JButton getExportButton(){
+        return exportButton;
+    }
+    public static JButton getImportButton(){
+        return importButton;
     }
     public static JButton getBackButton(){
         return backButton;

@@ -12,6 +12,8 @@ public class ProductFrame extends JFrame{
     private static JButton addButton = new JButton("Adicionar Produto");
     private static JButton editButton = new JButton("Editar Produto");
     private static JButton deleteButton = new JButton("Excluir Produto");
+    private static JButton exportButton = new JButton("Exportar Produto");
+    private static JButton importButton = new JButton("Importar Produto");
     private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
     public ProductFrame(){ 
@@ -40,6 +42,8 @@ public class ProductFrame extends JFrame{
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
+        buttonPanel.add(exportButton);
+        buttonPanel.add(importButton);
         buttonPanel.add(backButton);
 
         this.pack();
@@ -60,6 +64,12 @@ public class ProductFrame extends JFrame{
     }
     public static JButton getDeleteButton(){
         return deleteButton;
+    }
+    public static JButton getExportButton(){
+        return exportButton;
+    }
+    public static JButton getImportButton(){
+        return importButton;
     }
     public static JButton getBackButton(){
         return backButton;

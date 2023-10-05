@@ -8,6 +8,8 @@ import com.examp.item.*;
 import com.examp.order.*;
 import com.examp.window.*;
 
+import java.io.File;
+
 public class App implements ActionListener{
 
     WindowManager windowManager;
@@ -42,10 +44,6 @@ public class App implements ActionListener{
 
                 JOptionPane.showMessageDialog(this.windowManager, "Ciente adicionado");
     
-                String url = "comercioEletronico\\files\\clients\\" + clientParams[2] + ".csv";
-
-                register.AddClient(clientParams[0], clientParams[1], clientParams[2], url);
-
             }else{
 
                 JOptionPane.showMessageDialog(this.windowManager, "Cliente com este CPF não existe");
@@ -74,6 +72,14 @@ public class App implements ActionListener{
 
             this.refreshClient(true);
             
+        }else if(e.getSource() == ClientFrame.getExportButton()){
+            
+            this.exportClient();
+            
+        }else if(e.getSource() == ClientFrame.getImportButton()){
+            
+            //this.importClient();
+            
         }else if(e.getSource() == ClientFrame.getBackButton()){
             
             this.windowManager.getClientFrame().setVisible(false);
@@ -97,6 +103,14 @@ public class App implements ActionListener{
             this.deleteProduct();
             this.refreshProduct(true);
             
+        }else if(e.getSource() == ProductFrame.getExportButton()){
+            
+            this.exportProduct();
+            
+        }else if(e.getSource() == ProductFrame.getImportButton()){
+            
+            
+            
         }else if(e.getSource() == ProductFrame.getBackButton()){
             
             this.windowManager.getProductFrame().setVisible(false);
@@ -112,12 +126,66 @@ public class App implements ActionListener{
             this.deleteOrder();
             this.refreshOrder(true);
 
+        }else if(e.getSource() == OrderFrame.getExportButton()){
+            
+            this.exportOrder();
+            
+        }else if(e.getSource() == OrderFrame.getImportButton()){
+            
+            
+            
         }else if(e.getSource() == OrderFrame.getBackButton()){
             
             this.windowManager.getOrderFrame().setVisible(false);
             this.windowManager.startWindow();
 
         }
+    }
+
+    public void exportClient(){
+
+        String inputCpf;
+
+        do{
+            try{
+
+                inputCpf = JOptionPane.showInputDialog(this.windowManager, "DIgite o CPF do cliente: ");
+                Long.parseLong(inputCpf);
+
+                if(inputCpf.length() == 11){
+                    break;
+                }
+
+                JOptionPane.showMessageDialog(this.windowManager, "Coloque um valor válido");
+                
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this.windowManager, "Coloque um valor válido");
+                
+            }
+        }while(true);
+
+        String url = "comercioEletronico\\files\\clients\\" + inputCpf + ".csv";
+        File tempFile = new File(url);
+        if(tempFile.exists()){
+
+            JOptionPane.showMessageDialog(this.windowManager, "Arquivo deste cliente já existe");
+            return;
+
+        }
+
+
+        if(clientManager.scanList(inputCpf) == -1){
+            JOptionPane.showMessageDialog(this.windowManager, "Cliente com este CPF não existe");
+            return;
+        }
+
+        Client tempClient = clientManager.getTemp().get( clientManager.scanList(inputCpf) );
+
+        register.exportClient(tempClient.getName(), tempClient.getAdress(), tempClient.getCpf(), url);
+
+        JOptionPane.showMessageDialog(this.windowManager, "Cliente exportado");
+
     }
 
     public void addProduct(){
@@ -142,10 +210,6 @@ public class App implements ActionListener{
             JOptionPane.showMessageDialog(this.windowManager, "Produto adicionado");
             clientManager.getTemp().get( clientManager.scanList(productParams[4]) ).
                         addClientProduct(productParams[3]);
-
-            String url = "comercioEletronico\\files\\products\\" + productParams[3] + ".csv";
-    
-            register.addProduct(productParams[0], productParams[1], productParams[2],productParams[3], url);
 
         }else{
 
@@ -181,6 +245,47 @@ public class App implements ActionListener{
         }
 
         JOptionPane.showMessageDialog(this.windowManager, productManager.removeProduct(productId));
+
+    }
+
+    public void exportProduct(){
+
+        String inputId;
+
+        do{
+            try{
+
+                inputId = JOptionPane.showInputDialog(this.windowManager, "DIgite o ID do produto: ");
+                Integer.parseInt(inputId);
+                break;
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this.windowManager, "Coloque um valor válido");
+                
+            }
+        }while(true);
+
+        String url = "comercioEletronico\\files\\products\\" + inputId + ".csv";
+        File tempFile = new File(url);
+        if(tempFile.exists()){
+
+            JOptionPane.showMessageDialog(this.windowManager, "Arquivo deste produto já existe");
+            return;
+
+        }
+
+
+        if(productManager.scanList(inputId) == -1){
+            JOptionPane.showMessageDialog(this.windowManager, "Produto com este ID não existe");
+            return;
+        }
+
+        Product tempProduct = productManager.getTemp().get( productManager.scanList(inputId) );
+
+        register.exportProduct(tempProduct.getName(), Float.toString(tempProduct.getPrice()), 
+                                    Integer.toString(tempProduct.getQuantity()), tempProduct.getId() ,url);
+
+        JOptionPane.showMessageDialog(this.windowManager, "Produto exportado");
 
     }
 
@@ -226,10 +331,6 @@ public class App implements ActionListener{
 
             JOptionPane.showMessageDialog(this.windowManager, "Pedido adicionado");
 
-            String url = "comercioEletronico\\files\\orders\\" + orderParams[2] + ".csv";
-
-            register.addOrder(orderParams[0], orderParams[1], orderParams[2], orderParams[3], orderParams[4], url);
-
         }else{
 
             JOptionPane.showMessageDialog(this.windowManager, "Pedido com este ID já existe");
@@ -247,6 +348,47 @@ public class App implements ActionListener{
         }
 
         JOptionPane.showMessageDialog(this.windowManager, orderManager.removeOrder(orderId));
+    }
+
+    public void exportOrder(){
+
+        String inputId;
+
+        do{
+            try{
+
+                inputId = JOptionPane.showInputDialog(this.windowManager, "DIgite o ID da ordem: ");
+                Integer.parseInt(inputId);
+                break;
+
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this.windowManager, "Coloque um valor válido");
+                
+            }
+        }while(true);
+
+        String url = "comercioEletronico\\files\\orders\\" + inputId + ".csv";
+        File tempFile = new File(url);
+        if(tempFile.exists()){
+
+            JOptionPane.showMessageDialog(this.windowManager, "Arquivo desta ordem já existe");
+            return;
+
+        }
+
+
+        if(orderManager.scanList(inputId) == -1){
+            JOptionPane.showMessageDialog(this.windowManager, "Ordem com este ID não existe");
+            return;
+        }
+
+        Order tempOrder = orderManager.getTemp().get( orderManager.scanList(inputId) );
+
+        register.exportOrder(tempOrder.getClientCpf(), tempOrder.getProductId(), tempOrder.getId(), 
+        Integer.toString(tempOrder.getQuantity()), Integer.toString(tempOrder.getShipping()), url);
+
+        JOptionPane.showMessageDialog(this.windowManager, "Ordem exportada");
+
     }
 
     public void refreshClient(boolean isDeleting){

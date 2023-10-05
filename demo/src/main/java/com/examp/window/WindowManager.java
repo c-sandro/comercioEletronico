@@ -42,6 +42,8 @@ public class WindowManager extends JFrame{
             ClientFrame.getAddButton().addActionListener(this.app);
             ClientFrame.getEditButton().addActionListener(this.app);
             ClientFrame.getDeleteButton().addActionListener(this.app);
+            ClientFrame.getExportButton().addActionListener(this.app);
+            ClientFrame.getImportButton().addActionListener(this.app);
             ClientFrame.getBackButton().addActionListener(this.app);
             
         }else if(userOption == 1){
@@ -52,6 +54,8 @@ public class WindowManager extends JFrame{
             ProductFrame.getAddButton().addActionListener(this.app);
             ProductFrame.getEditButton().addActionListener(this.app);
             ProductFrame.getDeleteButton().addActionListener(this.app);
+            ProductFrame.getExportButton().addActionListener(this.app);
+            ProductFrame.getImportButton().addActionListener(this.app);
             ProductFrame.getBackButton().addActionListener(this.app);
 
         }else if(userOption == 2){
@@ -61,6 +65,8 @@ public class WindowManager extends JFrame{
 
             OrderFrame.getAddButton().addActionListener(this.app);
             OrderFrame.getDeleteButton().addActionListener(this.app);
+            OrderFrame.getExportButton().addActionListener(this.app);
+            OrderFrame.getImportButton().addActionListener(this.app);
             OrderFrame.getBackButton().addActionListener(this.app);
 
         }else if(userOption == 3){

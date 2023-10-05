@@ -12,6 +12,8 @@ public class ClientFrame extends JFrame{
     private static JButton addButton = new JButton("Adicionar Cliente");
     private static JButton editButton = new JButton("Editar Cliente");
     private static JButton deleteButton = new JButton("Excluir Cliente");
+    private static JButton exportButton = new JButton("Exportar Cliente");
+    private static JButton importButton = new JButton("Importar Cliente");
     private static JButton backButton = new JButton("Voltar Ao Menu Principal");
     
     public ClientFrame(){ 
@@ -38,6 +40,8 @@ public class ClientFrame extends JFrame{
         buttonPanel.add(addButton);
         buttonPanel.add(editButton);
         buttonPanel.add(deleteButton);
+        buttonPanel.add(exportButton);
+        buttonPanel.add(importButton);
         buttonPanel.add(backButton);
 
         this.pack();
@@ -58,6 +62,12 @@ public class ClientFrame extends JFrame{
     }
     public static JButton getDeleteButton(){
         return deleteButton;
+    }
+    public static JButton getExportButton(){
+        return exportButton;
+    }
+    public static JButton getImportButton(){
+        return importButton;
     }
     public static JButton getBackButton(){
         return backButton;
