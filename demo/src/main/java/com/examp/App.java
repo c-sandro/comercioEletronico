@@ -42,7 +42,7 @@ public class App implements ActionListener{
 
                 JOptionPane.showMessageDialog(this.windowManager, "Ciente adicionado");
     
-                String url = "comercioEletronico\\files\\clients";
+                String url = "comercioEletronico\\files\\clients\\" + clientParams[2] + ".csv";
 
                 register.AddClient(clientParams[0], clientParams[1], clientParams[2], url);
 
@@ -143,7 +143,7 @@ public class App implements ActionListener{
             clientManager.getTemp().get( clientManager.scanList(productParams[4]) ).
                         addClientProduct(productParams[3]);
 
-            String url = "comercioEletronico\\files\\products.csv";
+            String url = "comercioEletronico\\files\\products\\" + productParams[3] + ".csv";
     
             register.addProduct(productParams[0], productParams[1], productParams[2],productParams[3], url);
 
@@ -226,9 +226,9 @@ public class App implements ActionListener{
 
             JOptionPane.showMessageDialog(this.windowManager, "Pedido adicionado");
 
-            String url = "comercioEletronico\\files\\order.csv";
+            String url = "comercioEletronico\\files\\orders\\" + orderParams[2] + ".csv";
 
-            register.addOrder(orderParams[0], orderParams[1], orderParams[2], orderParams[3],orderParams[4], url);
+            register.addOrder(orderParams[0], orderParams[1], orderParams[2], orderParams[3], orderParams[4], url);
 
         }else{
 
