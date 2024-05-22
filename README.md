@@ -108,4 +108,4 @@ CPF do cliente: CPF em que o cliente foi cadastrado (Somente números). Ex: "123
 
 <hr>
 
-<h1>Desenvolvido por:</h1> <h3>Carlos Sandro Gonçalves, Giovanni Gomes, Carolline Mello, Ana Luisa Souto</h3>
+<h1>Desenvolvido por:</h1> <h3>Carlos Sandro Gonçalves, Giovanni Gomes, Carolline Mello, Ana Luiza Souto</h3>
